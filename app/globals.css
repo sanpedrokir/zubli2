@@ -1,26 +1,85 @@
 @import "tailwindcss";
 
+/* Zubli Reconnect — warm, nostalgic palette */
+@theme {
+  --color-cream: #fbf6ee;
+  --color-parchment: #f3eadb;
+  --color-sand: #e7d9c3;
+  --color-ink: #2f2a25;
+  --color-ink-soft: #5e554c;
+  --color-clay: #b85c38;
+  --color-clay-dark: #95462a;
+  --color-clay-soft: #f4dccf;
+  --color-sage: #6f8f75;
+  --color-sage-soft: #dfe9df;
+  --color-rose: #c98a85;
+  --color-rose-soft: #f5e1de;
+  --color-honey: #d4a23f;
+  --color-honey-soft: #f7e8c6;
+  --color-plum: #6b4a5e;
+
+  --font-serif: var(--font-fraunces), "Georgia", "Times New Roman", serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --shadow-soft: 0 1px 2px rgb(47 42 37 / 0.04), 0 8px 24px -12px rgb(47 42 37 / 0.18);
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  color-scheme: light;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  /* faint paper grain */
+  background-image: radial-gradient(rgb(184 92 56 / 0.035) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+::selection {
+  background: var(--color-honey-soft);
+}
+
+@utility card {
+    @apply rounded-3xl border border-sand/70 bg-white/80 p-6 shadow-soft backdrop-blur-sm;
+}
+@utility btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-clay disabled:cursor-not-allowed disabled:opacity-60;
+}
+@utility btn-primary {
+    @apply btn bg-clay text-white hover:bg-clay-dark;
+}
+@utility btn-secondary {
+    @apply btn border border-sand bg-white text-ink hover:border-clay/50 hover:bg-parchment;
+}
+@utility btn-ghost {
+    @apply btn px-3 text-ink-soft hover:bg-parchment hover:text-ink;
+}
+@utility btn-danger {
+    @apply btn border border-rose/50 bg-white text-clay-dark hover:bg-rose-soft;
+}
+@utility btn-sm {
+    @apply px-3.5! py-1.5! text-xs!;
+}
+@utility input {
+    @apply block w-full rounded-2xl border border-sand bg-white px-4 py-2.5 text-sm text-ink placeholder:text-ink-soft/60 shadow-inner shadow-sand/20 transition focus:border-clay focus:outline-none focus:ring-4 focus:ring-clay-soft;
+}
+@utility label {
+    @apply mb-1.5 block text-sm font-medium text-ink;
+}
+@utility hint {
+    @apply mt-1 text-xs text-ink-soft;
+}
+@utility field-error {
+    @apply mt-1 text-xs font-medium text-clay-dark;
+}
+@utility chip {
+    @apply inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-medium;
+}
+@utility heading {
+    @apply font-serif text-3xl font-semibold tracking-tight text-ink sm:text-4xl;
+}
+@utility subheading {
+    @apply font-serif text-xl font-semibold text-ink;
 }
